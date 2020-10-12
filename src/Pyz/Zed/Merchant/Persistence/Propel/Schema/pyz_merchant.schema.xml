@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="zed" xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd" namespace="Orm\Zed\Merchant\Persistence" package="src.Orm.Zed.Merchant.Persistence">
+
+    <table name="pyz_merchant" idMethod="native" allowPkInsert="true">
+        <column name="id_merchant" type="integer" primaryKey="true" />
+        <column name="name" type="VARCHAR" size="100" required="true" />
+        <column name="address" type="VARCHAR" size="255" required="true" />
+        <behavior name="event">
+            <parameter name="pyz_merchant_all" column="*" />
+        </behavior>
+    </table>
+</database>
+

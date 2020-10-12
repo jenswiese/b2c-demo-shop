@@ -51,6 +51,8 @@ use Pyz\Zed\DataImport\Business\Model\Glossary\GlossaryWriterStep;
 use Pyz\Zed\DataImport\Business\Model\Locale\AddLocalesStep;
 use Pyz\Zed\DataImport\Business\Model\Locale\LocaleNameToIdLocaleStep;
 use Pyz\Zed\DataImport\Business\Model\Locale\Repository\LocaleRepository;
+use Pyz\Zed\DataImport\Business\Model\Merchant\MerchantAddressConcatinationStep;
+use Pyz\Zed\DataImport\Business\Model\Merchant\MerchantWriterStep;
 use Pyz\Zed\DataImport\Business\Model\Navigation\NavigationKeyToIdNavigationStep;
 use Pyz\Zed\DataImport\Business\Model\Navigation\NavigationWriterStep;
 use Pyz\Zed\DataImport\Business\Model\NavigationNode\NavigationNodeValidityDatesStep;
@@ -214,6 +216,8 @@ class DataImportBusinessFactory extends SprykerDataImportBusinessFactory
                 return $this->createNavigationImporter($dataImportConfigurationActionTransfer);
             case DataImportConfig::IMPORT_TYPE_NAVIGATION_NODE:
                 return $this->createNavigationNodeImporter($dataImportConfigurationActionTransfer);
+            case DataImportConfig::IMPORT_TYPE_MERCHANT:
+                return $this->createMerchantImporter($dataImportConfigurationActionTransfer);
             default:
                 return null;
         }
@@ -1802,6 +1806,25 @@ class DataImportBusinessFactory extends SprykerDataImportBusinessFactory
 
         $dataImporter->setDataSetCondition($this->createCombinedProductGroupMandatoryColumnCondition());
         $dataImporter->addDataSetStepBroker($dataSetStepBroker);
+
+        return $dataImporter;
+    }
+
+    /**
+     * @param DataImportConfigurationActionTransfer $dataImportConfigurationActionTransfer
+     * @return DataImporterInterface
+     */
+    public function createMerchantImporter(
+        DataImportConfigurationActionTransfer $dataImportConfigurationActionTransfer
+    ): DataImporterInterface {
+        $dataImporter = $this->getCsvDataImporterFromConfig($this->getConfig()->getMerchantDataImporterConfiguration());
+
+        $dataStepBroker = $this->createTransactionAwareDataSetStepBroker();
+        $dataStepBroker
+            ->addStep(new MerchantAddressConcatinationStep())
+            ->addStep(new MerchantWriterStep());
+
+        $dataImporter->addDataSetStepBroker($dataStepBroker);
 
         return $dataImporter;
     }
