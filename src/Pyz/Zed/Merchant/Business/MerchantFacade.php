@@ -11,7 +11,7 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 class MerchantFacade extends AbstractFacade implements MerchantFacadeInterface
 {
     /**
-     * @param array $merchantIds
+     * @param int[] $merchantIds
      * @return array
      */
     public function getMerchantByIdMerchant(array $merchantIds): array
