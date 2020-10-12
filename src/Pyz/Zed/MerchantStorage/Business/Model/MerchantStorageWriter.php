@@ -8,7 +8,7 @@ use Propel\Runtime\Exception\PropelException;
 use Pyz\Zed\Merchant\Business\MerchantFacade;
 use Pyz\Zed\MerchantStorage\Persistence\MerchantStorageEntityManagerInterface;
 
-class MerchantStorageWriter
+class MerchantStorageWriter implements MerchantStorageWriterInterface
 {
     /**
      * @var MerchantStorageEntityManagerInterface
@@ -31,7 +31,7 @@ class MerchantStorageWriter
     }
 
     /**
-     * @param array $merchantIds
+     * @param int[] $merchantIds
      * @throws PropelException
      */
     public function publish(array $merchantIds): void
@@ -47,7 +47,7 @@ class MerchantStorageWriter
     }
 
     /**
-     * @param array $merchantIds
+     * @param int[] $merchantIds
      */
     public function unpublish(array $merchantIds): void
     {
