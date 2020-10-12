@@ -1,6 +1,6 @@
 <?php
 
-namespace Pyz\Zed\Merchant\MerchantEvents;
+namespace Pyz\Zed\Merchant\Dependency;
 
 interface MerchantEvents
 {

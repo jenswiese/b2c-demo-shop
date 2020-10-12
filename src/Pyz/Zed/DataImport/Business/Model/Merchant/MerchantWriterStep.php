@@ -3,7 +3,7 @@
 namespace Pyz\Zed\DataImport\Business\Model\Merchant;
 
 use Orm\Zed\Merchant\Persistence\PyzMerchantQuery;
-use Pyz\Zed\Merchant\MerchantEvents\MerchantEvents;
+use Pyz\Zed\Merchant\Dependency\MerchantEvents;
 use Spryker\Zed\DataImport\Business\Model\DataImportStep\PublishAwareStep;
 use Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface;
 use Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface;
@@ -17,7 +17,7 @@ class MerchantWriterStep extends PublishAwareStep implements DataImportStepInter
     /**
      * @inheritDoc
      */
-    public function execute(DataSetInterface $dataSet)
+    public function execute(DataSetInterface $dataSet): void
     {
         if (!$this->isValid($dataSet)) {
             return;
