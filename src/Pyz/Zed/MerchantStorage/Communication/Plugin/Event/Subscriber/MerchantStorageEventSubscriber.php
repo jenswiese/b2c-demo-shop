@@ -1,20 +1,20 @@
 <?php
 
-namespace Pyz\Zed\Merchant\Communication\Plugin\Event\Subscriber;
+namespace Pyz\Zed\MerchantStorage\Communication\Plugin\Event\Subscriber;
 
-use Pyz\Zed\Merchant\Communication\Plugin\Event\Listener\MerchantStorageListener;
-use Pyz\Zed\Merchant\MerchantEvents\MerchantEvents;
+use Pyz\Zed\Merchant\Dependency\MerchantEvents;
+use Pyz\Zed\MerchantStorage\Communication\Plugin\Event\Listener\MerchantStorageListener;
 use Spryker\Zed\Event\Dependency\EventCollectionInterface;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Event\Dependency\Plugin\EventSubscriberInterface;
 
-class MerchantEventSubscriber extends AbstractPlugin implements EventSubscriberInterface
+class MerchantStorageEventSubscriber extends AbstractPlugin implements EventSubscriberInterface
 {
     /**
      * @param EventCollectionInterface $eventCollection
      * @return EventCollectionInterface
      */
-    public function getSubscribedEvents(EventCollectionInterface $eventCollection)
+    public function getSubscribedEvents(EventCollectionInterface $eventCollection): EventCollectionInterface
     {
         $eventsToSubscribe = [
             MerchantEvents::ENTITY_PYZ_MERCHANT_CREATE,

@@ -1,15 +1,15 @@
 <?php
 
-namespace Pyz\Zed\Merchant\Communication\Plugin\Event\Listener;
+namespace Pyz\Zed\MerchantStorage\Communication\Plugin\Event\Listener;
 
 use Generated\Shared\Transfer\EventEntityTransfer;
-use Pyz\Zed\Merchant\Business\MerchantFacade;
-use Pyz\Zed\Merchant\MerchantEvents\MerchantEvents;
+use Pyz\Zed\Merchant\Business\MerchantStorageFacade;
+use Pyz\Zed\Merchant\Dependency\MerchantEvents;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;
 use Spryker\Zed\Event\Dependency\Plugin\EventBulkHandlerInterface;
 
 /**
- * @method MerchantFacade getFacade()
+ * @method MerchantStorageFacade getFacade()
  */
 class MerchantStorageListener extends AbstractPlugin implements EventBulkHandlerInterface
 {
