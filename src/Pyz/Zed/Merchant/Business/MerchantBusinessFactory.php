@@ -15,9 +15,4 @@ class MerchantBusinessFactory extends AbstractBusinessFactory
             $this->getRepository()
         );
     }
-
-    public function createMerchantImporter()
-    {
-        return new MerchantImporter();
-    }
 }
