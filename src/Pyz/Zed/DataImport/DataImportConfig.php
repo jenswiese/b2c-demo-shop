@@ -7,6 +7,7 @@
 
 namespace Pyz\Zed\DataImport;
 
+use Generated\Shared\Transfer\DataImporterConfigurationTransfer;
 use Spryker\Zed\DataImport\DataImportConfig as SprykerDataImportConfig;
 
 /**
@@ -52,6 +53,7 @@ class DataImportConfig extends SprykerDataImportConfig
     public const IMPORT_TYPE_COMBINED_PRODUCT_PRICE = 'combined-product-price';
     public const IMPORT_TYPE_COMBINED_PRODUCT_STOCK = 'combined-product-stock';
     public const IMPORT_TYPE_COMBINED_PRODUCT_GROUP = 'combined-product-group';
+    public const IMPORT_TYPE_MERCHANT = 'merchant';
 
     /**
      * @return string|null
@@ -60,4 +62,13 @@ class DataImportConfig extends SprykerDataImportConfig
     {
         return APPLICATION_ROOT_DIR . DIRECTORY_SEPARATOR . 'data/import/local/full_EU.yml';
     }
+
+    /**
+     * @return DataImporterConfigurationTransfer
+     */
+    public function getMerchantDataImporterConfiguration(): DataImporterConfigurationTransfer
+    {
+        return $this->buildImporterConfiguration('merchant.csv', static::IMPORT_TYPE_MERCHANT);
+    }
+
 }
